@@ -1,6 +1,7 @@
 import random
 import pandas as pd
 from generate_mac import generate_mac
+from datetime import datetime, timezone
 
 def generator_private_ip():
   x1 = random.choice([172,192,10]) #moved inside loop
@@ -147,12 +148,14 @@ for i in range(200):
   n, t = generator_name_title()
   mac_address = generate_mac.total_random()
   nas_ip_address = generator_private_ip()
+  created_at = datetime.now(tz=timezone.utc).isoformat()
   
   entry = {
     "name": n,
     "description": t,
     "mac_address": mac_address,
     "nas_ip_address": nas_ip_address,
+    "created_at": created_at,
   }
 
   data.append(entry)
